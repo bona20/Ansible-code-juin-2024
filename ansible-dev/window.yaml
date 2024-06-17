@@ -1,0 +1,16 @@
+---
+- hosts: wind
+  tasks:
+    - name: create a file
+      win_file:
+        path: C:\Users\Administrator\Desktop\bona
+        state: directory
+    - name: download file online
+      win_get_url:
+        dest: C:\Users\Administrator\Desktop\bona
+        url: https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.9.5.tar.xz
+
+    - name: update all package
+      win_updates:
+        category_names: "*"
+        reboot: true

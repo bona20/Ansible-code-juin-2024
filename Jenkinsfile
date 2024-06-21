@@ -5,14 +5,14 @@ pipeline{
         stage('zip the file'){
             steps{
                 sh 'rm -rf *.zip || echo ""'
-                sh 'zip ansible-${BUILD_ID}.zip * --exclude Jenkinnksfile'
+                sh 'zip -r ansible-${BUILD_ID}.zip * --exclude Jenkinsfile'
             }
         }
-        stage('upload artifacts to jfrod'){
+        stage('upload artifacts to jfrog'){
             steps{
                 sh 'curl -uadmin:AP8gcgmmset5jeYChTJYDN6XmDd -T \
-                 ansible-${BUILD_ID}.zip \
-                "http://100.26.249.97:8081/artifactory/ansible/ansible-${BUILD_ID}.zip"'
+                ansible-${BUILD_ID}.zip \
+                "http://34.201.161.49:8081/artifactory/ansible/ansible-${BUILD_ID}.zip"'
             }
         }
         stage('publish to ansible server'){
